@@ -1,3 +1,4 @@
 *.o
 a.out
-add
+add_uint32
+add_int32
