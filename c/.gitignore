@@ -4,3 +4,6 @@
 a.out
 add_int32
 add_uint32
+log2_s1
+create_table
+log2_s2
