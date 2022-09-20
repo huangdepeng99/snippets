@@ -4,8 +4,14 @@
  */
 /* $begin create_table.c */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
+static
+int compar(const void *p1, const void *p2) {
+	return * (const int *) p1 - * (const int *) p2;
+}
 
 int main() {
 	int m = 32;
@@ -15,18 +21,16 @@ int main() {
 			rem[i] = (1U << i) % m;
 		}
 		
+		qsort(rem, 32, sizeof(int), compar);
 		for (int i = 0; i < 31; ++i) {
-			for (int j = i + 1; j < 32; ++j) {
-				if (rem[i] == rem[j])
-					goto l1;
-			}
+			if (rem[i] == rem[i + 1])
+				goto next;
 		}
-		goto l2;
-l1:
+		break;
+next:
 		++m;
 	}
-l2:
-	;
+	
 	char magic[m + 1];
 	memset(magic, '-', m), magic[m] = '\0';
 	char base = '0';
