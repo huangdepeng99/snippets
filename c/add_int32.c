@@ -21,29 +21,29 @@ int64_t add_int32(int32_t i1, int32_t i2) {
 		uint8_t zo = x | y;
 		if (za == 1) {	/* za == 1 */
 			if (flag == true) {
-				result |= 0x1L << (INT64_WIDTH - 1);
+				result |= INT64_MIN;
 			}
 			else {
-				result &= ~(0x1L << (INT64_WIDTH - 1));
+				result &= ~INT64_MIN;
 			}
 			flag = true;
 		}
 		else if (zo == 1) {	/* za != 1 && zo == 1 */
 			if (flag == true) {
-				result &= ~(0x1L << (INT64_WIDTH - 1));
+				result &= ~INT64_MIN;
 				flag = true;
 			}
 			else {
-				result |= 0x1L << (INT64_WIDTH - 1);
+				result |= INT64_MIN;
 				flag = false;
 			}
 		}
 		else {	/* za != 1 && zo != 1 */
 			if (flag == true) {
-				result |= 0x1L << (INT64_WIDTH - 1);
+				result |= INT64_MIN;
 			}
 			else {
-				result &= ~(0x1L << (INT64_WIDTH - 1));
+				result &= ~INT64_MIN;
 			}
 			flag = false;
 		}

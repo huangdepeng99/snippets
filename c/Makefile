@@ -8,10 +8,10 @@ TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2
 all: $(TARGETS)
 
 add_int32: add_int32.c
-	@$(CC) $(CFLAGS) -std=c2x -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
-	@$(CC) $(CFLAGS) -std=c2x -S $^ -o $@.s
-	@$(CC) $(CFLAGS) -std=c2x -c $^ -o $@.o
-	$(CC) $(CFLAGS) -std=c2x $^ -o $@
+	@$(CC) $(CFLAGS) -std=c2x -fwrapv -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c2x -fwrapv -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c2x -fwrapv -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c2x -fwrapv $^ -o $@
 
 add_uint32: add_uint32.c
 	@$(CC) $(CFLAGS) -std=c2x -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
