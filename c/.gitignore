@@ -7,3 +7,6 @@ add_uint32
 log2_s1
 create_table
 log2_s2
+set_duplicate_s1
+set_duplicate_s2
+set_duplicate_s3
