@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
-#include <unistd.h>
 #include <stdbool.h>	/* for bool, true, false */
 
 #define N USHRT_MAX
@@ -30,7 +29,7 @@ int main(void) {
 			return 1;	/* 异常退出 */
 		}
 		
-		srand(time(NULL));
+		srand(time(NULL) + i);
 		for (ushrt i = 0; i < N; ++i) {
 			a[i] = rand() % R;
 		}
@@ -57,7 +56,6 @@ outer:
 			printf("%d: no duplicate elements.\n", i + 1);
 
 		free(a);
-		sleep(1);
 	}
 	printf("%.0lf clicks, %.6lf seconds.\n", clock_ticks,  clock_ticks / CLOCKS_PER_SEC);
 	
