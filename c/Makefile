@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 CFLAGS = -Wall -Werror -Og
 CC = gcc
-TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2 set_duplicate_s1 set_duplicate_s2 set_duplicate_s3
+TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2 set_duplicate_s1 set_duplicate_s2 set_duplicate_s3 bit_set_difference
 
 .PHONY: all clean
 
@@ -50,6 +50,12 @@ set_duplicate_s2: set_duplicate_s2.c
 	$(CC) $(CFLAGS) -std=c11 $^ -o $@
 
 set_duplicate_s3: set_duplicate_s3.c
+	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c11 $^ -o $@
+
+bit_set_difference: bit_set_difference.c
 	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
 	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
 	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o

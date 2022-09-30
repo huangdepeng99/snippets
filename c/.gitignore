@@ -10,3 +10,4 @@ log2_s2
 set_duplicate_s1
 set_duplicate_s2
 set_duplicate_s3
+bit_set_difference
