@@ -36,7 +36,7 @@ int main(void) {
 		
 		/* 进行判断 */
 		bool flag;
-		ushrt counter[R] = {};
+		ushrt counter[R] = {0};
 		
 		clock_t t = clock();
 		for (ushrt i = 0; i < N; ++i) {

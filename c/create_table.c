@@ -16,7 +16,7 @@ int compar(const void *p1, const void *p2) {
 int main() {
 	int m = 32;
 	while (1) {
-		int rem[32] = {};
+		int rem[32] = {0};
 		for (int i = 0; i < 32; ++i) {
 			rem[i] = (1U << i) % m;
 		}
