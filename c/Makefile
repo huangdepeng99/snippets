@@ -1,7 +1,8 @@
 SHELL = /bin/bash
 CFLAGS = -Wall -Werror -Og
 CC = gcc
-TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2 set_duplicate_s1 set_duplicate_s2 set_duplicate_s3 bit_set_difference float_point byte_order
+TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2 set_duplicate_s1 set_duplicate_s2 set_duplicate_s3	\
+		  bit_set_difference float_point byte_order show_bytes
 
 .PHONY: all clean
 
@@ -68,6 +69,12 @@ float_point: float_point.c
 	$(CC) $(CFLAGS) -std=c11 $^ -o $@
 
 byte_order: byte_order.c
+	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c11 $^ -o $@
+
+show_bytes: show_bytes.c
 	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
 	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
 	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
