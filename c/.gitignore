@@ -14,5 +14,7 @@ bit_set_difference
 float_point
 byte_order
 show_bytes
-hex2dd4
-dd2hex4
+hex2dd
+dd2hex
+hex2ch
+ch2hex

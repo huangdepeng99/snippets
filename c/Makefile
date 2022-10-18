@@ -2,7 +2,7 @@ SHELL = /bin/bash
 CFLAGS = -Wall -Werror -Og
 CC = gcc
 TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2 set_duplicate_s1 set_duplicate_s2 set_duplicate_s3	\
-		  bit_set_difference float_point byte_order show_bytes hex2dd4 dd2hex4
+		  bit_set_difference float_point byte_order show_bytes hex2dd dd2hex hex2ch ch2hex
 
 .PHONY: all clean
 
@@ -80,13 +80,25 @@ show_bytes: show_bytes.c
 	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
 	$(CC) $(CFLAGS) -std=c11 $^ -o $@
 
-hex2dd4: hex2dd4.c
+hex2dd: hex2dd.c
 	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
 	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
 	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
 	$(CC) $(CFLAGS) -std=c11 $^ -o $@
 
-dd2hex4: dd2hex4.c
+dd2hex: dd2hex.c
+	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c11 $^ -o $@
+
+hex2ch: hex2ch.c
+	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c11 $^ -o $@
+
+ch2hex: ch2hex.c
 	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
 	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
 	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
