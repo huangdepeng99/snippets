@@ -10,9 +10,10 @@
 #include <limits.h>
 #include <stdbool.h>	/* for bool, true, false */
 
-#define RED(S) "\033[01;31m" S "\033[00m"
-#define N USHRT_MAX
-#define M 100
+#define RED(S)		"\033[01;31m" S "\033[00m"
+#define ERRMSG(S)	RED(S)
+#define N			USHRT_MAX
+#define M			100
 
 typedef unsigned short ushrt;
 
@@ -22,7 +23,7 @@ int main(void) {
 		/* 生成数据 */
 		int *a = (int *) malloc(sizeof(int) * N);
 		if (a == NULL) {
-			fprintf(stderr, RED("Out of memory!\n"));
+			fprintf(stderr, ERRMSG("Out of memory!\n"));
 			return 1;	/* 异常退出 */
 		}
 		

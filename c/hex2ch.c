@@ -11,7 +11,8 @@
 #include <arpa/inet.h>
 #include <regex.h>
 
-#define RED(S) "\033[01;31m" S "\033[00m"
+#define RED(S)		"\033[01;31m" S "\033[00m"
+#define ERRMSG(S)	RED(S)
 #define PATTERN		"^(0x|0X)?[[:xdigit:]]{1,32}$"
 #define s6_addr32	__in6_u.__u6_addr32
 
@@ -75,7 +76,7 @@ main(int argc, char *argv[])
 	Regcomp(&compiled, PATTERN, REG_EXTENDED | REG_NOSUB);
 	int rv = Regexec(&compiled, argv[1], 0, NULL, 0);
 	if (rv == REG_NOMATCH) {
-		fprintf(stderr, RED("Error: ") "invalid hex number \"%s\"\n", argv[1]);
+		fprintf(stderr, ERRMSG("Error: ") "invalid hex number \"%s\"\n", argv[1]);
 		print_usage();
 		exit(EXIT_FAILURE);
 	}
