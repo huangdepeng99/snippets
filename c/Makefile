@@ -93,16 +93,16 @@ dd2hex: dd2hex.c
 	$(CC) $(CFLAGS) -std=c11 $^ -o $@
 
 hex2ch: hex2ch.c
-	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
-	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
-	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
-	$(CC) $(CFLAGS) -std=c11 $^ -o $@
+	@$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE $^ -o $@
 
 ch2hex: ch2hex.c
-	@$(CC) $(CFLAGS) -std=c11 -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
-	@$(CC) $(CFLAGS) -std=c11 -S $^ -o $@.s
-	@$(CC) $(CFLAGS) -std=c11 -c $^ -o $@.o
-	$(CC) $(CFLAGS) -std=c11 $^ -o $@
+	@$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE -E $^ | grep -ve '^#' | indent --linux-style -o $@.i
+	@$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE -S $^ -o $@.s
+	@$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE -c $^ -o $@.o
+	$(CC) $(CFLAGS) -std=c11 -D_DEFAULT_SOURCE $^ -o $@
 
 clean:
 	rm -rvf *.i *.s *.o $(TARGETS)

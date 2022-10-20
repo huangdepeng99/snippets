@@ -14,7 +14,6 @@
 #define RED(S)		"\033[01;31m" S "\033[00m"
 #define ERRMSG(S)	RED(S)
 #define PATTERN		"^(0x|0X)?[[:xdigit:]]{1,32}$"
-#define s6_addr32	__in6_u.__u6_addr32
 
 static char *program_name;
 

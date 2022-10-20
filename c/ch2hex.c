@@ -8,8 +8,6 @@
 #include <netinet/in.h>		/* 为了 `struct in6_addr' */
 #include <arpa/inet.h>
 
-#define s6_addr32	__in6_u.__u6_addr32
-
 static char *program_name;
 
 void
