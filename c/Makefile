@@ -1,5 +1,5 @@
 SHELL = /bin/bash
-CFLAGS = -Wall -Werror -Og
+CFLAGS = -Wall -Werror -pedantic -Og
 CC = gcc
 TARGETS = add_int32 add_uint32 log2_s1 create_table log2_s2 set_duplicate_s1 set_duplicate_s2 set_duplicate_s3	\
 		  bit_set_difference float_point byte_order show_bytes hex2dd dd2hex hex2ch ch2hex

@@ -25,10 +25,13 @@ int main(void) {
 	double clock_ticks = 0.0;
 	for (int i = 0; i < M; ++i) {
 		/* 生成数据 */
-		int *a = (int *) malloc(sizeof(int) * N);
-		if (a == NULL) {
+		unsigned long int res;
+		int *a;
+		if(__builtin_umull_overflow(sizeof(int), N, &res) ||
+			(a = (int *) malloc(res)) == NULL)
+		{
 			fprintf(stderr, ERRMSG("Out of memory!\n"));
-			return 1;	/* 异常退出 */
+			exit(EXIT_FAILURE);	/* 异常退出 */
 		}
 		
 		srand(time(NULL) + i);
@@ -61,7 +64,7 @@ outer:
 	}
 	printf("%.0lf clicks, %.6lf seconds.\n", clock_ticks,  clock_ticks / CLOCKS_PER_SEC);
 	
-	return 0;
+	exit(EXIT_SUCCESS);
 }
 
 /* $end set_duplicate_s3.c */
